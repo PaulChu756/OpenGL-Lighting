@@ -9,7 +9,8 @@
 class Camera;
 class Shader;
 
-class LightingSphereApplication : public BaseApplication {
+class LightingSphereApplication : public BaseApplication 
+{
 public:
 
 	LightingSphereApplication();
@@ -32,7 +33,8 @@ private:
 	Shader*		m_shader;
 
 	// define basic lighting
-	struct DirectionalLight {
+	struct DirectionalLight 
+	{
 		glm::vec3 direction;
 		glm::vec3 diffuse;
 		glm::vec3 specular;
@@ -41,7 +43,8 @@ private:
 	glm::vec3	m_ambientLight;
 
 	// a generic material structure
-	struct Material {
+	struct Material 
+	{
 		glm::vec3 ambient;
 		glm::vec3 diffuse;
 		glm::vec3 specular;
