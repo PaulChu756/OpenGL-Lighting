@@ -10,7 +10,8 @@ class Camera;
 class Shader;
 class Mesh;
 
-class LightingOBJApplication : public BaseApplication {
+class LightingOBJApplication : public BaseApplication 
+{
 public:
 
 	LightingOBJApplication();
@@ -25,7 +26,8 @@ public:
 private:
 
 	// define basic lighting
-	struct DirectionalLight {
+	struct DirectionalLight 
+	{
 		glm::vec3 direction;
 		glm::vec3 diffuse;
 		glm::vec3 specular;

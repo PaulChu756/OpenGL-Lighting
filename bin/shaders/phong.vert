@@ -15,7 +15,8 @@ uniform mat4 ModelMatrix;
 // we need this matrix to transform the normal (it's the inverse transposed model matrix!)
 uniform mat4 NormalMatrix;
 
-void main() {
+void main() 
+{
 	vPosition = ModelMatrix * Position;
 	vNormal = NormalMatrix * Normal;
 	gl_Position = ProjectionViewModel * Position;

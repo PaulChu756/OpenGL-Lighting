@@ -17,15 +17,18 @@ using glm::mat4;
 LightingOBJApplication::LightingOBJApplication()
 	: m_camera(nullptr),
 	m_shader(nullptr),
-	m_modelMatrix(1) {
+	m_modelMatrix(1) 
+{
 
 }
 
-LightingOBJApplication::~LightingOBJApplication() {
+LightingOBJApplication::~LightingOBJApplication() 
+{
 
 }
 
-bool LightingOBJApplication::startup() {
+bool LightingOBJApplication::startup() 
+{
 
 	// create a basic window
 	createWindow("AIE Textured OBJ Application", 1280, 720);
@@ -50,15 +53,18 @@ bool LightingOBJApplication::startup() {
 	
 	// load a shader
 	m_shader = new Shader();
-	if (m_shader->loadShader(GL_VERTEX_SHADER, "./shaders/phong.vert") == false) {
+	if (m_shader->loadShader(GL_VERTEX_SHADER, "./shaders/phong.vert") == false) 
+	{
 		printf("Vertex Shader Error: %s\n", m_shader->getLastError());
 		return false;
 	}
-	if (m_shader->loadShader(GL_FRAGMENT_SHADER, "./shaders/phong.frag") == false) {
+	if (m_shader->loadShader(GL_FRAGMENT_SHADER, "./shaders/phong.frag") == false) 
+	{
 		printf("Fragment Shader Error: %s\n", m_shader->getLastError());
 		return false;
 	}
-	if (m_shader->link() == false) {
+	if (m_shader->link() == false) 
+	{
 		printf("Shader Link Error: %s\n", m_shader->getLastError());
 		return false;
 	}
@@ -66,7 +72,8 @@ bool LightingOBJApplication::startup() {
 	return true;
 }
 
-void LightingOBJApplication::shutdown() {
+void LightingOBJApplication::shutdown() 
+{
 
 	// cleanup render data
 	delete m_mesh;
@@ -80,7 +87,8 @@ void LightingOBJApplication::shutdown() {
 	destroyWindow();
 }
 
-bool LightingOBJApplication::update(float deltaTime) {
+bool LightingOBJApplication::update(float deltaTime) 
+{
 	
 	// close the application if the window closes or we press escape
 	if (glfwWindowShouldClose(m_window) ||
@@ -101,7 +109,8 @@ bool LightingOBJApplication::update(float deltaTime) {
 	vec4 black(0, 0, 0, 1);
 
 	// for now let's add a grid to the gizmos
-	for (int i = 0; i < 21; ++i) {
+	for (int i = 0; i < 21; ++i) 
+	{
 		Gizmos::addLine(vec3(-10 + i, 0, 10), vec3(-10 + i, 0, -10),
 						i == 10 ? white : black);
 		Gizmos::addLine(vec3(10, 0, -10 + i), vec3(-10, 0, -10 + i),
@@ -114,7 +123,8 @@ bool LightingOBJApplication::update(float deltaTime) {
 	return true;
 }
 
-void LightingOBJApplication::draw() {
+void LightingOBJApplication::draw() 
+{
 
 	// clear the screen for this frame
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);

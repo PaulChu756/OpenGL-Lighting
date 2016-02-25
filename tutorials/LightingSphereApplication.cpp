@@ -18,15 +18,18 @@ using glm::mat4;
 LightingSphereApplication::LightingSphereApplication()
 	: m_camera(nullptr),
 	m_shader(nullptr),
-	m_modelMatrix(1) {
+	m_modelMatrix(1) 
+{
 
 }
 
-LightingSphereApplication::~LightingSphereApplication() {
+LightingSphereApplication::~LightingSphereApplication() 
+{
 
 }
 
-bool LightingSphereApplication::startup() {
+bool LightingSphereApplication::startup() 
+{
 
 	// create a basic window
 	createWindow("AIE Lit Sphere Application", 1280, 720);
@@ -55,15 +58,18 @@ bool LightingSphereApplication::startup() {
 		
 	// load a shader
 	m_shader = new Shader();
-	if (m_shader->loadShader(GL_VERTEX_SHADER, "./shaders/phong.vert") == false) {
+	if (m_shader->loadShader(GL_VERTEX_SHADER, "./shaders/phong.vert") == false) 
+	{
 		printf("Vertex Shader Error: %s\n", m_shader->getLastError());
 		return false;
 	}
-	if (m_shader->loadShader(GL_FRAGMENT_SHADER, "./shaders/phong.frag") == false) {
+	if (m_shader->loadShader(GL_FRAGMENT_SHADER, "./shaders/phong.frag") == false) 
+	{
 		printf("Fragment Shader Error: %s\n", m_shader->getLastError());
 		return false;
 	}
-	if (m_shader->link() == false) {
+	if (m_shader->link() == false) 
+	{
 		printf("Shader Link Error: %s\n", m_shader->getLastError());
 		return false;
 	}
@@ -71,7 +77,8 @@ bool LightingSphereApplication::startup() {
 	return true;
 }
 
-void LightingSphereApplication::shutdown() {
+void LightingSphereApplication::shutdown() 
+{
 
 	// cleanup render data
 	glDeleteBuffers(1, &m_vbo);
@@ -88,7 +95,8 @@ void LightingSphereApplication::shutdown() {
 	destroyWindow();
 }
 
-bool LightingSphereApplication::update(float deltaTime) {
+bool LightingSphereApplication::update(float deltaTime) 
+{
 	
 	// close the application if the window closes or we press escape
 	if (glfwWindowShouldClose(m_window) ||
@@ -109,7 +117,8 @@ bool LightingSphereApplication::update(float deltaTime) {
 	vec4 black(0, 0, 0, 1);
 
 	// for now let's add a grid to the gizmos
-	for (int i = 0; i < 21; ++i) {
+	for (int i = 0; i < 21; ++i) 
+	{
 		Gizmos::addLine(vec3(-10 + i, 0, 10), vec3(-10 + i, 0, -10),
 						i == 10 ? white : black);
 		Gizmos::addLine(vec3(10, 0, -10 + i), vec3(-10, 0, -10 + i),
@@ -122,7 +131,8 @@ bool LightingSphereApplication::update(float deltaTime) {
 	return true;
 }
 
-void LightingSphereApplication::draw() {
+void LightingSphereApplication::draw() 
+{
 
 	// clear the screen for this frame
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -196,7 +206,8 @@ void LightingSphereApplication::draw() {
 
 void LightingSphereApplication::generateSphere(unsigned int segments, unsigned int rings,
 											   unsigned int& vao, unsigned int& vbo, unsigned int& ibo,
-											   unsigned int& indexCount) {
+											   unsigned int& indexCount) 
+{
 
 	unsigned int vertCount = (segments + 1) * (rings + 2);
 	indexCount = segments * (rings + 1) * 6;
@@ -210,11 +221,13 @@ void LightingSphereApplication::generateSphere(unsigned int segments, unsigned i
 
 	AIEVertex* vertex = vertices;
 
-	for (unsigned int ring = 0; ring < (rings + 2); ++ring) {
+	for (unsigned int ring = 0; ring < (rings + 2); ++ring) 
+	{
 		float r0 = glm::sin(ring * ringAngle);
 		float y0 = glm::cos(ring * ringAngle);
 
-		for (unsigned int segment = 0; segment < (segments + 1); ++segment, ++vertex) {
+		for (unsigned int segment = 0; segment < (segments + 1); ++segment, ++vertex) 
+		{
 			float x0 = r0 * glm::sin(segment * segmentAngle);
 			float z0 = r0 * glm::cos(segment * segmentAngle);
 
@@ -231,8 +244,10 @@ void LightingSphereApplication::generateSphere(unsigned int segments, unsigned i
 	}
 
 	unsigned int index = 0;
-	for (unsigned i = 0; i < (rings + 1); ++i) {
-		for (unsigned j = 0; j < segments; ++j) {
+	for (unsigned i = 0; i < (rings + 1); ++i) 
+	{
+		for (unsigned j = 0; j < segments; ++j) 
+		{
 			indices[index++] = i * (segments + 1) + j;
 			indices[index++] = (i + 1) * (segments + 1) + j;
 			indices[index++] = i * (segments + 1) + (j + 1);

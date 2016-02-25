@@ -2,7 +2,8 @@
 #include "LightingOBJApplication.h"
 #include "LightingSphereApplication.h" 
 
-int main() {
+int main() 
+{
 	
 	// change startup application
 	BaseApplication* app = new LightingSphereApplication();
