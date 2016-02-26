@@ -110,6 +110,12 @@ bool LightingSphereApplication::update(float deltaTime)
 	float time = (float)glfwGetTime();
 	m_directionalLight.direction = vec3(sinf(0), 0, cosf(0));
 
+	m_directionalLight.lightPosition = vec3(5.0f, 5.0f, 0);
+
+	// change values of specPower
+	//if (glfwGetKey(m_window, GLFW_KEY_W))
+	//	specularPower += 1;
+
 	// clear the gizmos and add a transform and grid
 	Gizmos::clear();
 
@@ -161,6 +167,9 @@ void LightingSphereApplication::draw()
 	// bind light data (not using structs or uniform block for now)
 	int lightUniform = m_shader->getUniform("lightDirection");
 	glUniform3fv(lightUniform, 1, &m_directionalLight.direction[0]);
+
+	lightUniform = m_shader->getUniform("lightPosition");
+	glUniform3fv(lightUniform, 1, &m_directionalLight.lightPosition[0]);
 
 	lightUniform = m_shader->getUniform("Id");
 	glUniform3fv(lightUniform, 1, &m_directionalLight.diffuse[0]);
