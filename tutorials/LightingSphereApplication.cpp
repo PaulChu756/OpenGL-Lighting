@@ -47,8 +47,8 @@ bool LightingSphereApplication::startup()
 	m_ambientLight = vec3(0.25f);
 
 	// set up material
-	m_material.diffuse = vec3(1);
-	m_material.ambient = vec3(1);
+	m_material.diffuse = vec3(0.8, 0, 0);
+	m_material.ambient = vec3(1, 0, 0);
 	m_material.specular = vec3(1);
 	m_material.specularPower = 64;
 
@@ -110,7 +110,7 @@ bool LightingSphereApplication::update(float deltaTime)
 	float time = (float)glfwGetTime();
 	m_directionalLight.direction = vec3(sinf(0), 0, cosf(0));
 
-	m_directionalLight.lightPosition = vec3(5.0f, 5.0f, 0);
+	m_directionalLight.position = vec3(5.0f, 5.0f, 0);
 
 	// change values of specPower
 	//if (glfwGetKey(m_window, GLFW_KEY_W))
@@ -169,7 +169,7 @@ void LightingSphereApplication::draw()
 	glUniform3fv(lightUniform, 1, &m_directionalLight.direction[0]);
 
 	lightUniform = m_shader->getUniform("lightPosition");
-	glUniform3fv(lightUniform, 1, &m_directionalLight.lightPosition[0]);
+	glUniform3fv(lightUniform, 1, &m_directionalLight.position[0]);
 
 	lightUniform = m_shader->getUniform("Id");
 	glUniform3fv(lightUniform, 1, &m_directionalLight.diffuse[0]);
